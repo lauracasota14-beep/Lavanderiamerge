@@ -1,6 +1,8 @@
 package it.lavanderia.model;
 
 import it.lavanderia.observer.OrdineObserver;
+import it.lavanderia.strategy.LavaggioStandard;
+import it.lavanderia.strategy.StrategiaLavaggio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Ordine {
     private final List<Capo> capi = new ArrayList<>();
     private StatoOrdine stato = StatoOrdine.RICEVUTO;
     private final List<OrdineObserver> osservatori = new ArrayList<>();
+    private StrategiaLavaggio strategia = new LavaggioStandard();
 
     public Ordine(int id, String cliente) {
         this.id = id;
@@ -49,8 +52,22 @@ public class Ordine {
         for (Capo capo : capi) {
             totale += capo.getPrezzoBase();
         }
-        // Persona 3 (Strategy): qui si aggiunge il costo del programma di lavaggio
+        totale += strategia.getCostoExtra() * capi.size();
         return totale;
+    }
+
+    public void setStrategia(StrategiaLavaggio strategia) {
+        this.strategia = strategia;
+    }
+
+    public StrategiaLavaggio getStrategia() {
+        return strategia;
+    }
+
+    public void lava() {
+        for (Capo capo : capi) {
+            strategia.lava(capo);
+        }
     }
 
     public int getId() {
