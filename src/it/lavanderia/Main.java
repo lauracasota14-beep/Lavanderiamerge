@@ -6,6 +6,7 @@ public class Main {
         System.out.println("=== Lavanderia LavaMerge ===");
         System.out.println();
 
+        DemoStrategy.esegui();
         DemoFactory.esegui();
 
         System.out.println();
