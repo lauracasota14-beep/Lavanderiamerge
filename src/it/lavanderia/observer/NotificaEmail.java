@@ -1,6 +1,8 @@
 package it.lavanderia.observer;
 
-public class NotificaEmail {
+import it.lavanderia.model.Ordine;
+
+public class NotificaEmail implements OrdineObserver {
 
     private final String indirizzo;
 
