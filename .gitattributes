@@ -1,0 +1,4 @@
+# Git salva tutti i file di testo con fine riga LF, qualunque sia il PC o l'IDE.
+# Senza questo, un IDE che salva in CRLF (Windows) fa sembrare modificate tutte le righe
+# e crea conflitti su file interi invece che sulle righe volute dall'esercizio.
+* text=auto
