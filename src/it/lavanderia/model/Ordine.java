@@ -89,6 +89,7 @@ public class Ordine {
     @Override
     public String toString() {
         return "Ordine #" + id + " di " + cliente + " - " + capi.size() + " capi - stato: " + stato
+                + " - programma: " + strategia.getNome()
                 + " - totale: " + String.format("%.2f", getTotale()) + " euro";
     }
 }
