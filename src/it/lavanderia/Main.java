@@ -6,7 +6,7 @@ public class Main {
         System.out.println("=== Lavanderia LavaMerge ===");
         System.out.println();
 
-        // TODO: qui ogni persona aggiunge la sua demo
+              DemoObserver.esegui();
 
         System.out.println();
         System.out.println("=== Fine ===");
