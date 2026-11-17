@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== Lavanderia LavaMerge ===");
         System.out.println();
-
+      
+        DemoObserver.esegui();
         DemoStrategy.esegui();
         DemoFactory.esegui();
 

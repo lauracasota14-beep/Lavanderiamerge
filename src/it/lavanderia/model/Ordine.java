@@ -1,5 +1,6 @@
 package it.lavanderia.model;
 
+import it.lavanderia.observer.OrdineObserver;
 import it.lavanderia.strategy.LavaggioStandard;
 import it.lavanderia.strategy.StrategiaLavaggio;
 
@@ -15,6 +16,7 @@ public class Ordine {
     private final String cliente;
     private final List<Capo> capi = new ArrayList<>();
     private StatoOrdine stato = StatoOrdine.RICEVUTO;
+    private final List<OrdineObserver> osservatori = new ArrayList<>();
     private StrategiaLavaggio strategia = new LavaggioStandard();
 
     public Ordine(int id, String cliente) {
@@ -28,7 +30,21 @@ public class Ordine {
 
     public void setStato(StatoOrdine nuovoStato) {
         this.stato = nuovoStato;
-        // Persona 4 (Observer): qui si avvisano gli osservatori del cambio di stato
+        notificaOsservatori();
+    }
+
+    public void aggiungiOsservatore(OrdineObserver osservatore) {
+        osservatori.add(osservatore);
+    }
+
+    public void rimuoviOsservatore(OrdineObserver osservatore) {
+        osservatori.remove(osservatore);
+    }
+
+    private void notificaOsservatori() {
+        for (OrdineObserver osservatore : osservatori) {
+            osservatore.aggiorna(this);
+        }
     }
 
     public double getTotale() {
